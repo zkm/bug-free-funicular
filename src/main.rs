@@ -99,3 +99,13 @@ fn main() {
         std::process::exit(1);
     }
 }
+
+// name: Cache cargo builds
+// uses: Swatinem/rust-cache@v2
+// with:
+//   # Optional: share cache across branches on the same OS
+//   shared-key: linux
+//   # Optional: clearer namespace for keys
+//   prefix-key: v0-rust-ci
+//   # Optional: still save the cache even if the job fails
+//   cache-on-failure: true
