@@ -1,6 +1,6 @@
 mod commands {
     pub mod hello {
-        pub fn run(args: &Vec<String>) -> Result<(), String> {
+        pub fn run(args: &[String]) -> Result<(), String> {
             if args.is_empty() {
                 return Err("hello requires a name".into());
             }
@@ -15,7 +15,7 @@ mod commands {
     }
 
     pub mod sum {
-        pub fn run(args: &Vec<String>) -> Result<(), String> {
+        pub fn run(args: &[String]) -> Result<(), String> {
             if args.is_empty() {
                 return Err("sum requires at least one integer".into());
             }
@@ -30,7 +30,7 @@ mod commands {
     }
 
     pub mod guess {
-        pub fn run(_args: &Vec<String>) -> Result<(), String> {
+        pub fn run(_args: &[String]) -> Result<(), String> {
             // Minimal stub for the guessing game
             println!("Guess game not implemented in this stub.");
             Ok(())
@@ -39,10 +39,10 @@ mod commands {
 
     pub mod read {
         use std::fs;
-        pub fn run(args: &Vec<String>) -> Result<(), String> {
+        pub fn run(args: &[String]) -> Result<(), String> {
             let path = args.get(0).ok_or("read requires a path".to_string())?;
-            let content = fs::read_to_string(path)
-                .map_err(|e| format!("Failed to read {}: {}", path, e))?;
+            let content =
+                fs::read_to_string(path).map_err(|e| format!("Failed to read {}: {}", path, e))?;
             println!("{} bytes", content.len());
             Ok(())
         }
