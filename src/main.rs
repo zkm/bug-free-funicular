@@ -40,7 +40,7 @@ mod commands {
     pub mod read {
         use std::fs;
         pub fn run(args: &[String]) -> Result<(), String> {
-            let path = args.get(0).ok_or("read requires a path".to_string())?;
+            let path = args.first().ok_or("read requires a path".to_string())?;
             let content =
                 fs::read_to_string(path).map_err(|e| format!("Failed to read {}: {}", path, e))?;
             println!("{} bytes", content.len());
